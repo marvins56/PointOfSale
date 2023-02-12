@@ -5,65 +5,65 @@
 $sql="
 DELETE FROM `categories` WHERE 1;
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
 DELETE FROM `customers` WHERE 1;
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
 DELETE FROM `invoices` WHERE 1;
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
 DELETE FROM `products` WHERE 1;
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
 DELETE FROM `returns` WHERE 1;
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
 DELETE FROM `sales` WHERE 1;
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
 DELETE FROM `stocks` WHERE 1;
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
 DELETE FROM `types` WHERE 1;
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 
@@ -74,9 +74,9 @@ INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 (4, 'Electronics'),
 (5, 'Dressing');
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-  	die('Invalid query: ' . mysql_error());
+  	die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -86,9 +86,9 @@ INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_contact`) VAL
 (9, 'Hemel', '1324442342'),
 (10, 'Rafiq', '01234567');
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -104,9 +104,9 @@ INSERT INTO `invoices` (`invoice_id`, `selling_date`, `customer_id`, `employee_n
 (16, '2014-08-12 00:14:29', 7, '1', 1500, 10, 15, 2000, 447),
 (18, '2014-08-13 00:42:35', 7, '1', 80, 5, 1.5, 100, 22);
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -117,18 +117,18 @@ INSERT INTO `products` (`products_pk`, `product_id`, `product_name`, `product_ty
 (6, 'E3', 'Red LED', 0, 4, '', 2, 0.3),
 (7, 'P1', 'Panjabi', 5, 5, '41', 1500, 500);
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
 INSERT INTO `returns` (`return_id`, `return_date`, `invoice_id`, `product_id`, `quantity`, `amount`, `refund_invoice_id`) VALUES
 (1, '2014-08-12 21:44:46', 9, 'E2', 10, 20, 18);
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -150,9 +150,9 @@ INSERT INTO `sales` (`sales_id`, `invoice_id`, `product_id`, `quantity`, `return
 (27, 16, 'P1', 1, 0),
 (29, 18, 'E2', 50, 0);
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -163,9 +163,9 @@ INSERT INTO `stocks` (`stocks_pk`, `stock_id`, `product_id`, `import_quantity`, 
 (6, '1', 'E3', 10, 8, '2014-08-04 15:01:11', 0),
 (7, '2', 'P1', 20, 15, '2014-08-07 01:19:51', 0);
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -175,9 +175,9 @@ INSERT INTO `types` (`type_id`, `type_name`, `category_id`) VALUES
 (4, 'Boot', 1),
 (5, 'Men upper', 5);
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }else{
 	header('Location: index.php');	
 }

@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 $sql="
 CREATE TABLE IF NOT EXISTS `categories` (
@@ -28,9 +28,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 $sql="
 CREATE TABLE IF NOT EXISTS `company` (
@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS `company` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 $sql="
 CREATE TABLE IF NOT EXISTS `customers` (
@@ -54,9 +54,9 @@ CREATE TABLE IF NOT EXISTS `customers` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 $sql="
 CREATE TABLE IF NOT EXISTS `invoices` (
@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `invoices` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 $sql="
 CREATE TABLE IF NOT EXISTS `products` (
@@ -91,9 +91,9 @@ CREATE TABLE IF NOT EXISTS `products` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -109,9 +109,9 @@ CREATE TABLE IF NOT EXISTS `returns` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
   ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -125,9 +125,9 @@ CREATE TABLE IF NOT EXISTS `sales` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
   ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -143,9 +143,9 @@ CREATE TABLE IF NOT EXISTS `stocks` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
   ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -157,9 +157,9 @@ CREATE TABLE IF NOT EXISTS `types` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
   ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 
@@ -169,9 +169,9 @@ $sql="
 (1, '1', 'admin', '01234567891', NULL, NULL, '12345678', 1);
   ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-  	die('Invalid query: ' . mysql_error());
+  	die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -179,9 +179,9 @@ INSERT INTO `company` (`company_id`, `company_name`, `company_logo`) VALUES
 (1, 'Company Name', NULL);
   ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }else{
 	header('Location: index.php');	
 }

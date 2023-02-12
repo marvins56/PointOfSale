@@ -5,9 +5,9 @@
 $sql="
 DELETE FROM `accounts` WHERE 1;
   ";
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-    die('Invalid query: ' . mysql_error());
+    die('Invalid query: ' . mysqli_error($con));
 }
 
 $sql="
@@ -15,9 +15,9 @@ $sql="
 (1, '1', 'admin', '01234567891', NULL, NULL, '12345678', 1);
   ";
 
-$result=mysql_query($sql);
+$result=mysqli_query($con,$sql);
 if (!$result) {
-  	die('Invalid query: ' . mysql_error());
+  	die('Invalid query: ' . mysqli_error($con));
 }else{
 	header('Location: index.php');	
 }

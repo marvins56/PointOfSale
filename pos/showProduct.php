@@ -7,11 +7,11 @@
 		$productId=$_GET['x'];
 
 		$sql="SELECT * FROM products WHERE product_id='$productId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqli_num_rows($result)){
 			echo"
 			<table class='table table-responsive'>
 				<thead>
@@ -27,7 +27,7 @@
 				</thead>
 				<tbody>
 			";
-			while($row=mysql_fetch_array($result)){			
+			while($row=mysqli_fetch_array($result)){			
 				$productId=$row['product_id'];
 				$productName=$row['product_name'];
 				$productType=$row['product_type'];
@@ -39,29 +39,29 @@
 					$productSize="N/A";
 				}
 				$sql2="SELECT current_quantity FROM stocks WHERE product_id='$productId'";
-				$result2=mysql_query($sql2);
+				$result2=mysqli_query($con,$sql2);
 				if (!$result2) {
-					die('Invalid query: ' . mysql_error());
+					die('Invalid query: ' . mysqli_error($con));
 				}
-				$row2=mysql_fetch_array($result2);
+				$row2=mysqli_fetch_array($result2);
 				$currentQuantity=$row2['current_quantity'];
 
 				$sql2="SELECT type_name FROM types WHERE type_id='$productType'";
-				$result2=mysql_query($sql2);
+				$result2=mysqli_query($con,$sql2);
 				if (!$result2) {
-					die('Invalid query: ' . mysql_error());
+					die('Invalid query: ' . mysqli_error($con));
 				}
-				$row2=mysql_fetch_array($result2);
+				$row2=mysqli_fetch_array($result2);
 				$productTypeName=$row2['type_name'];
 				if($productTypeName===null)
 					$productTypeName="N/A";
 
 				$sql2="SELECT category_name FROM categories WHERE category_id='$productCategory'";
-				$result2=mysql_query($sql2);
+				$result2=mysqli_query($con,$sql2);
 				if (!$result2) {
-					die('Invalid query: ' . mysql_error());
+					die('Invalid query: ' . mysqli_error($con));
 				}
-				$row2=mysql_fetch_array($result2);
+				$row2=mysqli_fetch_array($result2);
 				$productCategoryName=$row2['category_name'];
 				if($productCategoryName===null)
 					$productCategoryName="N/A";

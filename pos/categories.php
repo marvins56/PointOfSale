@@ -7,11 +7,11 @@
 	if(isset($_POST['categorySubmit'])){
 		$name=$_POST['categoryName'];
 		$sql="SELECT category_id FROM categories WHERE category_name='$name'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqli_num_rows($result)){
 			echo "
 				<script>
 				alert('Category already exists.');
@@ -19,9 +19,9 @@
 			";
 		}else {
 			$sql="INSERT INTO categories (category_name) values ('$name')";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}
 		}
 	}else if(isset($_POST['categoryChangeSubmit'])){
@@ -29,11 +29,11 @@
 		$id=$_POST['categoryChangeId'];
 
 		$sql="SELECT category_id FROM categories WHERE category_name='$name'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqli_num_rows($result)){
 			echo "
 				<script>
 				alert('Category already exists.');
@@ -41,19 +41,19 @@
 			";
 		}else {
 			$sql="UPDATE categories SET `category_name`='$name' WHERE category_id='$id'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}
 		}
 	}
 
 	$sql="SELECT * FROM categories";
-	$result=mysql_query($sql);
+	$result=mysqli_query($con,$sql);
 	if (!$result) {
-	    die('Invalid query: ' . mysql_error());
+	    die('Invalid query: ' . mysqli_error($con));
 	}
-	if(mysql_num_rows($result)){
+	if(mysqli_num_rows($result)){
 		echo "
 		<div id='tableTitleDiv'>
 		Product Categories
@@ -70,7 +70,7 @@
 			</thead>
 			<tbody>
 		";
-		while($row=mysql_fetch_array($result)){
+		while($row=mysqli_fetch_array($result)){
 			$name=$row['category_name'];
 			$id=$row['category_id'];
 			echo "

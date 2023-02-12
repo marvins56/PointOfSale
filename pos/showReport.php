@@ -12,11 +12,11 @@
 		//echo $type." ".$startingDate." ".$endingeDate;
 		if($type==="sales"){
 			$sql="SELECT invoices.invoice_id,invoices.selling_date, products.product_id,products.product_name,products.product_price,products.buying_price,sales.quantity FROM sales JOIN invoices ON sales.invoice_id=invoices.invoice_id JOIN products ON sales.product_id=products.product_id WHERE invoices.selling_date>='$startingDate' AND invoices.selling_date<='$endingeDate'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());		
+			    die('Invalid query: ' . mysqli_error($con));		
 			}
-			if(mysql_num_rows($result)){
+			if(mysqli_num_rows($result)){
 				echo "
 				<div id='tableTitleDiv'>
 				Sales Report
@@ -41,7 +41,7 @@
 				";
 				$sumBuy=0;
 				$sumSold=0;
-				while($row=mysql_fetch_array($result)){
+				while($row=mysqli_fetch_array($result)){
 					$invoiceId=$row['invoice_id'];
 					$sellingDate=$row['selling_date'];
 					$productId=$row['product_id'];
@@ -71,11 +71,11 @@
 				}
 				
 				$sql2="SELECT  sum(`amount`*`discount`/100) AS total_discount,sum((`amount`-(`amount`*`discount`/100))*`vat`/100) AS total_vat FROM `invoices`  WHERE invoices.selling_date>='$startingDate' AND invoices.selling_date<='$endingeDate'";
-				$result2=mysql_query($sql2);
+				$result2=mysqli_query($con,$sql2);
 				if (!$result2) {
-				    die('Invalid query: ' . mysql_error());		
+				    die('Invalid query: ' . mysqli_error($con));		
 				}
-				$row2=mysql_fetch_array($result2);
+				$row2=mysqli_fetch_array($result2);
 				//$totalDiscount=ceil($row2['total_discount']);
 				//$totalVat=ceil($row2['total_vat']);		
 				$totalDiscount=($row2['total_discount']);
@@ -100,11 +100,11 @@
 			}
 		}else if($type==="stocks"){
 			$sql="SELECT * FROM stocks WHERE import_date>='$startingDate' AND import_date<='$endingeDate'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}
-			if(mysql_num_rows($result)){
+			if(mysqli_num_rows($result)){
 				echo "
 				<div id='tableTitleDiv'>
 				Stocks Report
@@ -129,7 +129,7 @@
 				";
 				$sumBuy=0;
 				$sumSold=0;
-				while($row=mysql_fetch_array($result)){
+				while($row=mysqli_fetch_array($result)){
 					$stockID=$row['stock_id'];
 					$productId=$row['product_id'];
 					$totalQuantity=$row['import_quantity'];
@@ -138,11 +138,11 @@
 					$soldQuantity=$totalQuantity-$currentQuantity;
 
 					$sql2="SELECT buying_price,product_price FROM products WHERE product_id='$productId'";
-					$result2=mysql_query($sql2);
+					$result2=mysqli_query($con,$sql2);
 					if (!$result2) {
-					    die('Invalid query: ' . mysql_error());
+					    die('Invalid query: ' . mysqli_error($con));
 					}
-					$row2=mysql_fetch_array($result2);
+					$row2=mysqli_fetch_array($result2);
 					$buyingPrice=$row2['buying_price'];
 					$sellingPrice=$row2['product_price'];
 					$totalBuy=$buyingPrice*$totalQuantity;
@@ -165,11 +165,11 @@
 				}
 				
 				$sql2="SELECT  sum(`amount`*`discount`/100) AS total_discount,sum((`amount`-(`amount`*`discount`/100))*`vat`/100) AS total_vat FROM `invoices`  WHERE invoices.selling_date>='$startingDate' AND invoices.selling_date<='$endingeDate'";
-				$result2=mysql_query($sql2);
+				$result2=mysqli_query($con,$sql2);
 				if (!$result2) {
-				    die('Invalid query: ' . mysql_error());		
+				    die('Invalid query: ' . mysqli_error($con));		
 				}
-				$row2=mysql_fetch_array($result2);
+				$row2=mysqli_fetch_array($result2);
 				//$totalDiscount=ceil($row2['total_discount']);
 				//$totalVat=ceil($row2['total_vat']);		
 				$totalDiscount=($row2['total_discount']);

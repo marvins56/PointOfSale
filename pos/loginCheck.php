@@ -6,11 +6,11 @@
 	if(isset($_SESSION['id'])){
 		$id=$_SESSION['id'];
 		$sql="SELECT * FROM accounts WHERE account_id='$id'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(!mysql_num_rows($result)){
+		if(!mysqli_num_rows($result)){
 			session_destroy();
 			echo"
 			<script>

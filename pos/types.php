@@ -9,11 +9,11 @@
 		$categoryName=$_POST['categoryName'];
 
 		$sql="SELECT type_id FROM types WHERE type_name='$typeName'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqli_num_rows($result)){
 			echo "
 				<script>
 				alert('Type already exists.');
@@ -21,17 +21,17 @@
 			";
 		}else {
 			$sql="SELECT category_id FROM categories WHERE category_name='$categoryName'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}
-			$row=mysql_fetch_array($result);
+			$row=mysqli_fetch_array($result);
 			$categoryId=$row['category_id'];
 
 			$sql="INSERT INTO types (type_name,category_id) values ('$typeName','$categoryId')";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}
 		}
 	}else if(isset($_POST['typeChangeSubmit'])){
@@ -40,11 +40,11 @@
 		$id=$_POST['typeChangeId'];
 
 		$sql="SELECT type_id FROM types WHERE type_name='$typeName'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqli_num_rows($result)){
 			echo "
 				<script>
 				alert('Type already exists.');
@@ -52,28 +52,28 @@
 			";
 		}else {			
 			$sql="SELECT category_id FROM categories WHERE category_name='$categoryName'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}
-			$row=mysql_fetch_array($result);
+			$row=mysqli_fetch_array($result);
 			$categoryId=$row['category_id'];
 //echo $id;
 
 			$sql="UPDATE types SET `type_name`='$typeName', `category_id`='$categoryId' WHERE type_id='$id'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}
 		}
 	}
 
 	$sql="SELECT * FROM types";
-	$result=mysql_query($sql);
+	$result=mysqli_query($con,$sql);
 	if (!$result) {
-	    die('Invalid query: ' . mysql_error());
+	    die('Invalid query: ' . mysqli_error($con));
 	}
-	if(mysql_num_rows($result)){
+	if(mysqli_num_rows($result)){
 		echo "
 		<div id='tableTitleDiv'>
 		Product Types
@@ -91,16 +91,16 @@
 			</thead>
 			<tbody>
 		";
-		while($row=mysql_fetch_array($result)){
+		while($row=mysqli_fetch_array($result)){
 			$typeName=$row['type_name'];
 			$categoryId=$row['category_id'];
 			$id=$row['type_id'];
 			$sql2="SELECT category_name FROM categories WHERE category_id='$categoryId'";
-			$result2=mysql_query($sql2);
+			$result2=mysqli_query($con,$sql2);
 			if (!$result2) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysql_fetch_array($result2);
+			$row2=mysqli_fetch_array($result2);
 			$categoryName=$row2['category_name'];
 			echo "
 				<tr>
@@ -148,11 +148,11 @@
 	          <input class="form-control" id="typeName" name="typeName" placeholder="Enter new type name." required type="text">
 	           	<?php
 	          		$sql="SELECT category_name FROM categories";
-	          		$result=mysql_query($sql);
+	          		$result=mysqli_query($con,$sql);
 					if (!$result) {
-					    die('Invalid query: ' . mysql_error());					}
+					    die('Invalid query: ' . mysqli_error($con));					}
 					echo "<select name='categoryName' class='form-control'>";
-					while($row=mysql_fetch_array($result)){
+					while($row=mysqli_fetch_array($result)){
 						$name=$row['category_name'];
 						echo "<option>$name</option>";
 					}
@@ -181,11 +181,11 @@
 	          <input class="form-control" id="typeChangeName" name="typeChangeName" placeholder="Enter new type name." required type="text">
 	           	<?php
 	          		$sql="SELECT category_name FROM categories";
-	          		$result=mysql_query($sql);
+	          		$result=mysqli_query($con,$sql);
 					if (!$result) {
-					    die('Invalid query: ' . mysql_error());					}
+					    die('Invalid query: ' . mysqli_error($con));					}
 					echo "<select name='categoryChangeName' class='form-control'>";
-					while($row=mysql_fetch_array($result)){
+					while($row=mysqli_fetch_array($result)){
 						$name=$row['category_name'];
 						echo "<option>$name</option>";
 					}

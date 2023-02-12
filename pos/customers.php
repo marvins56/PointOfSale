@@ -5,11 +5,11 @@
 	require 'supervisorCheck.php';
 	
 	$sql="SELECT * FROM customers";
-	$result=mysql_query($sql);
+	$result=mysqli_query($con,$sql);
 	if (!$result) {
-	    die('Invalid query: ' . mysql_error());
+	    die('Invalid query: ' . mysqli_error($con));
 	}
-	if(mysql_num_rows($result)){
+	if(mysqli_num_rows($result)){
 		echo "
 		<div id='tableTitleDiv'>
 		Customer List
@@ -26,7 +26,7 @@
 			</thead>
 			<tbody>
 		";
-		while($row=mysql_fetch_array($result)){			
+		while($row=mysqli_fetch_array($result)){			
 			$customerId=$row['customer_id'];
 			$customerName=$row['customer_name'];
 			$customerContact=$row['customer_contact'];

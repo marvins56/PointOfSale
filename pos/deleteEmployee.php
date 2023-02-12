@@ -5,9 +5,9 @@
 	if(isset($_GET['x'])){
 		$id=$_GET['x'];
 		$sql="DELETE FROM accounts WHERE account_id='$id'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
 		
 		header('Location: empoyees.php');

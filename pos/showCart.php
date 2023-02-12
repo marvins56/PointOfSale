@@ -23,11 +23,11 @@
 				$quantity=$_SESSION[$y];
 
 				$sql="SELECT product_name,product_price FROM products WHERE product_id='$productId'";
-				$result=mysql_query($sql);
+				$result=mysqli_query($con,$sql);
 				if (!$result) {
-				    die('Invalid query: ' . mysql_error());
+				    die('Invalid query: ' . mysqli_error($con));
 				}
-				$row=mysql_fetch_array($result);
+				$row=mysqli_fetch_array($result);
 				$productName=$row['product_name'];
 				$price=$row['product_price'];
 				$sum+=$price*$quantity;

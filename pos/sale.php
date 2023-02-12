@@ -12,24 +12,24 @@
 
 		//Selecting customer
 		$sql="SELECT customer_id FROM customers WHERE customer_name='$customerName' AND customer_contact='$customerContact'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-			die('Invalid query: ' . mysql_error());
+			die('Invalid query: ' . mysqli_error($con));
 		}
-		if(!mysql_num_rows($result)){
+		if(!mysqli_num_rows($result)){
 			$sql="INSERT INTO customers (customer_name,customer_contact) VALUES ('$customerName','$customerContact')";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 			$sql="SELECT customer_id FROM customers WHERE customer_name='$customerName' AND customer_contact='$customerContact'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$customerId=$row['customer_id'];
 
 		//Set current date and time
@@ -38,16 +38,16 @@
 
 		//Creating invoice
 		$sql="INSERT INTO invoices (selling_date,customer_id,employee_no) VALUES ('$entryDate','$customerId','$employeeNo')";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-			die('Invalid query: ' . mysql_error());
+			die('Invalid query: ' . mysqli_error($con));
 		}
 		$sql="SELECT invoice_id FROM invoices WHERE selling_date='$entryDate'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-			die('Invalid query: ' . mysql_error());
+			die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$invoiceId=$row['invoice_id'];
 
 		for($i=1;$i<=$cartItem;$i++){
@@ -57,17 +57,17 @@
 			$quantity=$_SESSION[$y];
 
 			$sql="INSERT INTO sales (invoice_id,product_id,quantity) VALUES ('$invoiceId','$productId','$quantity')";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 
 			$sql="SELECT current_quantity FROM stocks WHERE product_id='$productId'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row=mysql_fetch_array($result);
+			$row=mysqli_fetch_array($result);
 			$currentQuantity=$row['current_quantity'];
 
 		
@@ -76,9 +76,9 @@
 			//echo $currentQuantity."  ".$quantity."   ".$newQuantity."<br>";
 
 			$sql="UPDATE stocks SET current_quantity='$newQuantity' WHERE product_id='$productId'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 
 		}

@@ -5,21 +5,21 @@
 
 	if(isset($_GET['x'])){
 		$sql="SELECT invoice_id FROM invoices ORDER BY selling_date DESC LIMIT 1";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$invoiceId=$row['invoice_id'];
 		echo "<script>OpenInNewTab($invoiceId);</script>";
 	}
 
 	$sql="SELECT * FROM invoices ORDER BY selling_date DESC";
-	$result=mysql_query($sql);
+	$result=mysqli_query($con,$sql);
 	if (!$result) {
-	    die('Invalid query: ' . mysql_error());
+	    die('Invalid query: ' . mysqli_error($con));
 	}
-	if(mysql_num_rows($result)){
+	if(mysqli_num_rows($result)){
 		echo "
 		<div id='tableTitleDiv'>
 		Bills List
@@ -37,17 +37,17 @@
 			</thead>
 			<tbody>
 		";
-		while($row=mysql_fetch_array($result)){
+		while($row=mysqli_fetch_array($result)){
 			$invoiceId=$row['invoice_id'];
 			$sellingDate=$row['selling_date'];
 			$amount=$row['cash_given']-$row['cash_back'];
 
 			$sql2="SELECT SUM(product_price*quantity) AS total FROM `sales` JOIN products ON `sales`.`product_id`=`products`.`product_id` WHERE `sales`.`invoice_id`='$invoiceId'";
-			$result2=mysql_query($sql2);
+			$result2=mysqli_query($con,$sql2);
 			if (!$result2) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysql_fetch_array($result2);
+			$row2=mysqli_fetch_array($result2);
 			$total=$row2['total'];
 
 			echo"

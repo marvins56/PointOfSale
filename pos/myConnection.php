@@ -3,9 +3,7 @@
 	$username="root";
 	$password="";
 	$database="pos";
-	$con=mysql_connect($host,$username,$password,$database);
-	if(!$con){
-		die("can not connect:".mysql_error());
-	}
-	mysql_select_db($database,$con);	
+	$con=mysqli_connect($host,$username,$password,$database);
+	
+	mysqli_select_db($con,$database);	
 ?>

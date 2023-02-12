@@ -3,11 +3,11 @@
 	$q = $_GET['q'];
 	require 'myConnection.php';	
 	$sql="SELECT * FROM returns WHERE invoice_id = '$q'";
-	$result=mysql_query($sql);
+	$result=mysqli_query($con,$sql);
 	if (!$result) {
-	    die('Invalid query: ' . mysql_error());
+	    die('Invalid query: ' . mysqli_error($con));
 	}
-	if(mysql_num_rows($result)){
+	if(mysqli_num_rows($result)){
 		echo"
 		<table class='table table-responsive'>
 			<thead>
@@ -23,7 +23,7 @@
 			</thead>
 			<tbody>
 		";
-		while($row=mysql_fetch_array($result)){		
+		while($row=mysqli_fetch_array($result)){		
 			$reutrnId=$row['return_id'];
 			$reutrnDate=$row['return_date'];
 			$invoiceId=$row['invoice_id'];

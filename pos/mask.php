@@ -10,11 +10,11 @@
   function showTitle(){
     require 'myConnection.php';
     $sql="SELECT company_name FROM company";
-    $result=mysql_query($sql);
+    $result= mysqli_query($con,$sql);
     if (!$result) {
-        die('Invalid query: ' . mysql_error());
+        die('Invalid query: ');
     }
-    $row=mysql_fetch_array($result);
+    $row=mysqli_fetch_array($result);
     $companyName=$row['company_name'];
 
     echo $companyName;
@@ -92,11 +92,11 @@
         require 'myConnection.php';
         $id=$_SESSION['id'];
         $sql="SELECT is_admin FROM accounts WHERE account_id='$id'";
-        $result=mysql_query($sql);
+        $result=mysqli_query($con,$sql);
         if (!$result) {
-            die('Invalid query: ' . mysql_error());
+            die('Invalid query: ' . mysqli_error($con));
         }
-        $row=mysql_fetch_array($result);
+        $row=mysqli_fetch_array($result);
 
         if($row['is_admin']==='1'){
           echo'

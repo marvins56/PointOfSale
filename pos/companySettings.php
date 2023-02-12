@@ -1,4 +1,5 @@
 <?php
+
 	ob_start();
 	require 'mask.php';	
 	require 'loginCheck.php';
@@ -8,19 +9,20 @@
 		$name=$_POST['name'];
 
 		$sql="UPDATE company SET company_name='$name' WHERE 1";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
 		echo "<script>window.location.reload();</script>";
 	}
 	function showName(){
+		include 'myConnection.php';
 		$sql="SELECT company_name FROM company WHERE 1";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$var=$row['company_name'];
 		echo $var;
 	}

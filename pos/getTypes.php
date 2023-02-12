@@ -2,14 +2,14 @@
 	$q = $_GET['q'];
 	require 'myConnection.php';	
 	$sql="SELECT type_id,type_name FROM types WHERE category_id='$q'";
-	$result=mysql_query($sql);
+	$result=mysqli_query($con,$sql);
 	if (!$result) {
-		die('Invalid query: ' . mysql_error());
+		die('Invalid query: ' . mysqli_error($con));
 	}
-	if(mysql_num_rows($result)){
+	if(mysqli_num_rows($result)){
 		echo "<select id='typeName' name='typeName' class='form-control'>";
 		echo "<option value='0'>N/A</option>";
-		while($row=mysql_fetch_array($result)){
+		while($row=mysqli_fetch_array($result)){
 			$name=$row['type_name'];
 			$id=$row['type_id'];
 			echo "<option value='$id'>$name</option>";

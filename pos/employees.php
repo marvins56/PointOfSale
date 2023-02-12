@@ -13,20 +13,20 @@
 		$isAdmin=$_POST['accountType'];
 
 		$sql="INSERT INTO accounts (employee_name,employee_phone,employee_address,employee_national_id,password,is_admin) values ('$name','$phone','$address','$nationalId','$password','$isAdmin')";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}		
 	}
 
 	$adminId=$_SESSION['id'];
 
 	$sql="SELECT * FROM accounts WHERE account_id!='$adminId' AND (is_admin='0' OR is_admin>(SELECT is_admin FROM accounts WHERE account_id='$adminId')) ORDER BY is_admin";
-	$result=mysql_query($sql);
+	$result=mysqli_query($con,$sql);
 	if (!$result) {
-	    die('Invalid query: ' . mysql_error());
+	    die('Invalid query: ' . mysqli_error($con));
 	}
-	if(mysql_num_rows($result)){
+	if(mysqli_num_rows($result)){
 		echo "
 		<div id='tableTitleDiv'>
 		Employees List
@@ -48,7 +48,7 @@
 			</thead>
 			<tbody>
 		";
-		while($row=mysql_fetch_array($result)){
+		while($row=mysqli_fetch_array($result)){
 			$name=$row['employee_name'];
 			$phone=$row['employee_phone'];
 			$address=$row['employee_address'];
@@ -128,11 +128,11 @@
 			        require 'myConnection.php';
 			        $id=$_SESSION['id'];
 			        $sql="SELECT is_admin FROM accounts WHERE account_id='$id'";
-			        $result=mysql_query($sql);
+			        $result=mysqli_query($con,$sql);
 			        if (!$result) {
-			            die('Invalid query: ' . mysql_error());
+			            die('Invalid query: ' . mysqli_error($con));
 			        }
-			        $row=mysql_fetch_array($result);
+			        $row=mysqli_fetch_array($result);
 			        $level=$row['is_admin'];
 			        if($level==='1'){
 			        	echo "

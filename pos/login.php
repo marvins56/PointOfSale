@@ -51,21 +51,21 @@
 	if(isset($_SESSION['id'])){
 		$id=$_SESSION['id'];
 		$sql="SELECT * FROM accounts WHERE account_id='$id'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqli_num_rows($result)){
 			header('Location: panel.php');
 		}
 	}
 
 	$sql="SELECT company_name FROM company";
-	$result=mysql_query($sql);
+	$result=mysqli_query($con,$sql);
 	if (!$result) {
-	    die('Invalid query: ' . mysql_error());
+	    die('Invalid query: ' . mysqli_error($con));
 	}
-	$row=mysql_fetch_array($result);
+	$row=mysqli_fetch_array($result);
 	$companyName=$row['company_name'];
 
 	echo"
@@ -78,12 +78,12 @@
 		$password=$_POST['password'];
 
 		$sql="SELECT * FROM accounts WHERE employee_name='$username' AND password='$password'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
-			$row=mysql_fetch_array($result);
+		if(mysqli_num_rows($result)){
+			$row=mysqli_fetch_array($result);
 			//echo $row['account_id'];
 			$_SESSION['id']=$row['account_id'];
 			header('Location: panel.php');

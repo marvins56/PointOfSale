@@ -15,11 +15,11 @@
 		$productType=$_POST['typeName'];
 
 		$sql="SELECT product_id FROM products WHERE product_id='$productId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-			die('Invalid query: ' . mysql_error());
+			die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqli_num_rows($result)){
 			echo "
 				<script>
 				alert('Product ID already exists.');
@@ -27,25 +27,25 @@
 			";
 		}else{
 			$sql="INSERT INTO products (`product_id`, `product_name`, `product_type`, `product_category`, `product_size`, `product_price`,`buying_price`) VALUES ('$productId','$productName','$productType','$productCategory','$productSize','$productPrice','$buyingPrice')";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 			$sql="INSERT INTO stocks (`stock_id`, `product_id`, `import_quantity`, `current_quantity`, `import_date`) VALUES ('$stockId','$productId','$importQuantity','$importQuantity',now())";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 		}
 		
 	}
 
 	$sql="SELECT * FROM stocks WHERE is_deleted=0 ORDER BY import_date DESC";
-	$result=mysql_query($sql);
+	$result=mysqli_query($con,$sql);
 	if (!$result) {
-	    die('Invalid query: ' . mysql_error());
+	    die('Invalid query: ' . mysqli_error($con));
 	}
-	if(mysql_num_rows($result)){
+	if(mysqli_num_rows($result)){
 		echo "
 		<div id='tableTitleDiv'>
 		Stocks List
@@ -67,7 +67,7 @@
 			</thead>
 			<tbody>
 		";
-		while($row=mysql_fetch_array($result)){
+		while($row=mysqli_fetch_array($result)){
 			$stockID=$row['stock_id'];
 			$productId=$row['product_id'];
 			$totalQuantity=$row['import_quantity'];
@@ -76,11 +76,11 @@
 			$soldQuantity=$totalQuantity-$currentQuantity;
 
 			$sql2="SELECT buying_price FROM products WHERE product_id='$productId'";
-			$result2=mysql_query($sql2);
+			$result2=mysqli_query($con,$sql2);
 			if (!$result2) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysql_fetch_array($result2);
+			$row2=mysqli_fetch_array($result2);
 			$buyingPrice=$row2['buying_price'];
 			echo "
 				<tr>
@@ -166,12 +166,12 @@
 
 	           	<?php
 	          		$sql="SELECT category_id,category_name FROM categories";
-	          		$result=mysql_query($sql);
+	          		$result=mysqli_query($con,$sql);
 					if (!$result) {
-					    die('Invalid query: ' . mysql_error());					}
+					    die('Invalid query: ' . mysqli_error($con));					}
 					echo "<select name='categoryName' class='form-control' onchange='showType(this.value)'>";
 					echo "<option value='0'>N/A</option>";
-					while($row=mysql_fetch_array($result)){
+					while($row=mysqli_fetch_array($result)){
 						$name=$row['category_name'];
 						$id=$row['category_id'];
 						echo "<option value='$id'>$name</option>";

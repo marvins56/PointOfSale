@@ -2,6 +2,7 @@
 	ob_start();
 	require 'mask.php';	
 	require 'loginCheck.php';
+	include 'myConnection.php';
 
 	if(isset($_POST['accountEditSubmit'])){
 		$id=$_SESSION['id'];
@@ -11,9 +12,9 @@
 		$nationalId=$_POST['nationalId'];
 
 		$sql="UPDATE accounts SET employee_name='$name',employee_phone='$phone',employee_address='$address',employee_national_id='$nationalId' WHERE account_id='$id'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
 	}else if(isset($_POST['passwordChangeSubmit'])){
 		$id=$_SESSION['id'];
@@ -21,15 +22,15 @@
 		$currentPassword=$_POST['currentPassword'];
 		
 		$sql="SELECT account_id FROM accounts WHERE account_id='$id' AND password='$currentPassword'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqli_num_rows($result)){
 			$sql="UPDATE accounts SET password='$pass' WHERE account_id='$id'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());
+			    die('Invalid query: ' . mysqli_error($con));
 			}	
 			echo "
 				<script>
@@ -45,49 +46,53 @@
 		}		
 	}
 	function showUserName(){
+		include 'myConnection.php';
 		$id=$_SESSION['id'];
 		$sql="SELECT employee_name FROM accounts WHERE account_id='$id'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$var=$row['employee_name'];
 		echo $var;
 	}
 
 	function showUserPhone(){
+		include 'myConnection.php';
 		$id=$_SESSION['id'];
 		$sql="SELECT employee_phone FROM accounts WHERE account_id='$id'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$var=$row['employee_phone'];
 		echo $var;
 	}
 
 	function showUserAddress(){
+		include 'myConnection.php';
 		$id=$_SESSION['id'];
 		$sql="SELECT employee_address FROM accounts WHERE account_id='$id'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$var=$row['employee_address'];
 		echo $var;
 	}
 
 	function showUserNationalId(){
+		include 'myConnection.php';
 		$id=$_SESSION['id'];
 		$sql="SELECT employee_national_id FROM accounts WHERE account_id='$id'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$var=$row['employee_national_id'];
 		echo $var;
 	}

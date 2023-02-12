@@ -22,12 +22,12 @@
 
 		$returnId=$_GET['a'];
 		$sql="SELECT amount,invoice_id FROM returns WHERE return_id='$returnId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
 		if(mysql_num_rows($result)){
-			$row=mysql_fetch_array($result);
+			$row=mysqli_fetch_array($result);
 			$returnAmount=$row['amount'];
 			$returnBillId=$row['invoice_id'];
 		}else{
@@ -35,11 +35,11 @@
 		}
 
 		$sql="SELECT employee_name,employee_phone FROM accounts WHERE account_id='$employeeId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 
 		$employeeName=$row['employee_name'];
 		$employeeContact=$row['employee_phone'];
@@ -90,11 +90,11 @@
 			$quantity=$_SESSION[$y];
 
 			$sql="SELECT * FROM products WHERE product_id='$productId'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-			    die('Invalid query: ' . mysql_error());		
+			    die('Invalid query: ' . mysqli_error($con));		
 			}
-			$row=mysql_fetch_array($result);
+			$row=mysqli_fetch_array($result);
 
 			$productName=$row['product_name'];
 			$productType=$row['product_type'];
@@ -109,21 +109,21 @@
 				$productSize="N/A";
 			}
 			$sql2="SELECT type_name FROM types WHERE type_id='$productType'";
-			$result2=mysql_query($sql2);
+			$result2=mysqli_query($con,$sql2);
 			if (!$result2) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysql_fetch_array($result2);
+			$row2=mysqli_fetch_array($result2);
 			$productTypeName=$row2['type_name'];
 			if($productTypeName===null)
 				$productTypeName="N/A";
 
 			$sql2="SELECT category_name FROM categories WHERE category_id='$productCategory'";
-			$result2=mysql_query($sql2);
+			$result2=mysqli_query($con,$sql2);
 			if (!$result2) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysql_fetch_array($result2);
+			$row2=mysqli_fetch_array($result2);
 			$productCategoryName=$row2['category_name'];
 			if($productCategoryName===null)
 				$productCategoryName="N/A";
@@ -205,11 +205,11 @@
 	function showTitle(){
 	    require 'myConnection.php';
 	    $sql="SELECT company_name FROM company";
-	    $result=mysql_query($sql);
+	    $result=mysqli_query($con,$sql);
 	    if (!$result) {
-	        die('Invalid query: ' . mysql_error());
+	        die('Invalid query: ' . mysqli_error($con));
 	    }
-	    $row=mysql_fetch_array($result);
+	    $row=mysqli_fetch_array($result);
 	    $companyName=$row['company_name'];
 
 	    echo $companyName;
@@ -231,12 +231,12 @@
 
 		$returnId=$_GET['a'];
 		$sql="SELECT amount,invoice_id FROM returns WHERE return_id='$returnId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
 		if(mysql_num_rows($result)){
-			$row=mysql_fetch_array($result);
+			$row=mysqli_fetch_array($result);
 			$returnAmount=$row['amount'];
 			$returnBillId=$row['invoice_id'];
 		}else{
@@ -245,24 +245,24 @@
 
 
 		$sql="SELECT customer_id FROM customers WHERE customer_name='$customerName' AND customer_contact='$customerContact'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-			die('Invalid query: ' . mysql_error());
+			die('Invalid query: ' . mysqli_error($con));
 		}
 		if(!mysql_num_rows($result)){
 			$sql="INSERT INTO customers (customer_name,customer_contact) VALUES ('$customerName','$customerContact')";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 			$sql="SELECT customer_id FROM customers WHERE customer_name='$customerName' AND customer_contact='$customerContact'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$customerId=$row['customer_id'];
 
 		//Set current date and time
@@ -270,16 +270,16 @@
 
 		//Creating invoice
 		$sql="INSERT INTO invoices (selling_date,customer_id,employee_no,discount,vat,cash_given,cash_back) VALUES ('$entryDate','$customerId','$employeeId','$discount','$vat','$cashGiven','$cashReturn')";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-			die('Invalid query: ' . mysql_error());
+			die('Invalid query: ' . mysqli_error($con));
 		}
 		$sql="SELECT invoice_id FROM invoices WHERE selling_date='$entryDate'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-			die('Invalid query: ' . mysql_error());
+			die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		$invoiceId=$row['invoice_id'];
 
 		$sum=0;
@@ -290,47 +290,47 @@
 			$quantity=$_SESSION[$y];
 
 			$sql="INSERT INTO sales (invoice_id,product_id,quantity) VALUES ('$invoiceId','$productId','$quantity')";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 
 			$sql="SELECT current_quantity FROM stocks WHERE product_id='$productId'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row=mysql_fetch_array($result);
+			$row=mysqli_fetch_array($result);
 			$currentQuantity=$row['current_quantity'];		
 			$newQuantity=$currentQuantity-$quantity;
 
 			$sql="UPDATE stocks SET current_quantity='$newQuantity' WHERE product_id='$productId'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
 
 			$sql="SELECT product_price FROM products WHERE product_id='$productId'";
-			$result=mysql_query($sql);
+			$result=mysqli_query($con,$sql);
 			if (!$result) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row=mysql_fetch_array($result);
+			$row=mysqli_fetch_array($result);
 			$price=$row['product_price'];
 			$sum+=$quantity*$price;
 
 		}
 		$sum-=$returnAmount;
 		$sql="UPDATE invoices SET amount='$sum' WHERE invoice_id='$invoiceId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-			die('Invalid query: ' . mysql_error());
+			die('Invalid query: ' . mysqli_error($con));
 		}
 
 		$sql="UPDATE returns SET refund_invoice_id='$invoiceId' WHERE return_id='$returnId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-			die('Invalid query: ' . mysql_error());
+			die('Invalid query: ' . mysqli_error($con));
 		}
 
 		echo "

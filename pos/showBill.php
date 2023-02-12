@@ -9,12 +9,12 @@
 		$invoiceId=$_GET['x'];
 
 		$sql="SELECT amount,invoice_id,return_id FROM returns WHERE refund_invoice_id='$invoiceId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
-			$row=mysql_fetch_array($result);
+		if(mysqli_num_rows($result)){
+			$row=mysqli_fetch_array($result);
 			$returnAmount=$row['amount'];
 			$returnBillId=$row['invoice_id'];
 			$returnId=$row['return_id'];
@@ -24,11 +24,11 @@
 		
 
 		$sql="SELECT selling_date,discount,vat,cash_given,cash_back,customer_name,customer_contact,accounts.employee_no,employee_name,employee_phone FROM invoices JOIN customers ON invoices.customer_id=customers.customer_id JOIN accounts ON invoices.employee_no=accounts.employee_no WHERE invoices.invoice_id='$invoiceId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());
+		    die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 
 		$sellingDate=$row['selling_date'];
 		$customerName=$row['customer_name'];
@@ -65,9 +65,9 @@
 		";
 
 		$sql="SELECT * FROM sales JOIN products ON sales.product_id=products.product_id WHERE invoice_id='$invoiceId'";
-		$result=mysql_query($sql);
+		$result=mysqli_query($con,$sql);
 		if (!$result) {
-		    die('Invalid query: ' . mysql_error());		
+		    die('Invalid query: ' . mysqli_error($con));		
 		}
 		echo "
 		<table class='table table-responsive sortable'>
@@ -84,7 +84,7 @@
 			<tbody>
 		";
 		$sum=0;
-		while($row=mysql_fetch_array($result)){
+		while($row=mysqli_fetch_array($result)){
 			$productId=$row['product_id'];
 			$productName=$row['product_name'];
 			$productType=$row['product_type'];
@@ -98,21 +98,21 @@
 				$productSize="N/A";
 			}
 			$sql2="SELECT type_name FROM types WHERE type_id='$productType'";
-			$result2=mysql_query($sql2);
+			$result2=mysqli_query($con,$sql2);
 			if (!$result2) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysql_fetch_array($result2);
+			$row2=mysqli_fetch_array($result2);
 			$productTypeName=$row2['type_name'];
 			if($productTypeName===null)
 				$productTypeName="N/A";
 
 			$sql2="SELECT category_name FROM categories WHERE category_id='$productCategory'";
-			$result2=mysql_query($sql2);
+			$result2=mysqli_query($con,$sql2);
 			if (!$result2) {
-				die('Invalid query: ' . mysql_error());
+				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysql_fetch_array($result2);
+			$row2=mysqli_fetch_array($result2);
 			$productCategoryName=$row2['category_name'];
 			if($productCategoryName===null)
 				$productCategoryName="N/A";
@@ -196,11 +196,11 @@ echo "
 	function showTitle(){
 	    require 'myConnection.php';
 	    $sql="SELECT company_name FROM company";
-	    $result=mysql_query($sql);
+	    $result=mysqli_query($con,$sql);
 	    if (!$result) {
-	        die('Invalid query: ' . mysql_error());
+	        die('Invalid query: ' . mysqli_error($con));
 	    }
-	    $row=mysql_fetch_array($result);
+	    $row=mysqli_fetch_array($result);
 	    $companyName=$row['company_name'];
 
 	    echo $companyName;
