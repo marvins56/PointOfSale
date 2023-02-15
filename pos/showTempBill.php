@@ -9,8 +9,9 @@
 		$cartItem=$_SESSION['cart_item'];
 	
 
-	if(isset($_GET['x'])){		
-		$invoiceId="##";	
+	if(isset($_GET['x'])){	
+		$randid = Rand(0,1000000);	
+		$invoiceId="POS"."$randid";	
 
 		$sellingDate=date("Y-m-d H:i:s",time()+14400);
 		$customerName=$_GET['x'];
@@ -26,7 +27,7 @@
 		if (!$result) {
 		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqlI_num_rows($result)){
 			$row=mysqli_fetch_array($result);
 			$returnAmount=$row['amount'];
 			$returnBillId=$row['invoice_id'];

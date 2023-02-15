@@ -12,7 +12,7 @@
 		$buyingPrice=$_POST['buyingPrice'];
 		$productPrice=$_POST['productPrice'];
 		$productCategory=$_POST['categoryName'];
-		$productType=$_POST['typeName'];
+		// $productType=$_POST['typeName'];
 
 		$sql="SELECT product_id FROM products WHERE product_id='$productId'";
 		$result=mysqli_query($con,$sql);
