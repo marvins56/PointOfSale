@@ -120,6 +120,7 @@ $(function() {
     });
 });
 
+
 function checkReport(){
 	//alert("Report Check Clicked");
 	date1=$('#startingDate').val();

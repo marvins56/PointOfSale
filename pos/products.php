@@ -15,9 +15,14 @@
 		</div>
 		";
 		echo"
-		<table class='table table-responsive sortable'>
-			<thead>
-				<tr>
+		<div class='container-fluid pt-4 px-4'>
+		<div class='bg-light text-center rounded p-4'>
+		   
+			<div class='table-responsive'>
+				<table class='table text-start align-middle table-bordered table-hover mb-0'>
+					<thead>
+						<tr class='text-dark'>
+					
 					<td>Product No.</td>
 					<td>Product Name</td>
 					<td>Type</td>

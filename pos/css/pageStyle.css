@@ -1,5 +1,6 @@
 .body{
 	border: 0.5em black solid;
+	background-color: lightgray;;
 }
 
 .hiddenDiv{
@@ -126,7 +127,7 @@ table.sortable thead {
 	font-weight: bold;
 }
 #billTable{
-	//display:inline-block;
+	/* display:inline-block; */
 	clear: both;
 	width:100%;
 }
@@ -151,7 +152,7 @@ table.sortable thead {
 	padding: 1.5em;
 	border-radius: 0.5em;
 	margin: 5% auto;
-	background-color: rgba(180,100,150,0.2);
+	background-color:  lightgray;
 }
 #reportTitle{
 	text-align: center;
@@ -164,7 +165,7 @@ table.sortable thead {
 	padding: 1.5em;
 	border-radius: 0.5em;
 	margin: 5% auto;
-	background-color: rgba(180,100,150,0.2);
+	background-color: lightgray;
 }
 
 #accountEditDiv{
@@ -172,7 +173,7 @@ table.sortable thead {
 	padding: 1.5em;
 	border-radius: 0.5em;
 	margin: 5% auto;
-	background-color: rgba(180,100,150,0.2);
+	background-color: lightgray;
 }
 
 #returnDiv{
@@ -180,7 +181,7 @@ table.sortable thead {
 	padding: 1.5em;
 	border-radius: 0.5em;
 	margin: 5% auto;
-	background-color: rgba(180,100,150,0.2);
+	background-color: lightgray;
 }
 
 #returnIdDiv{
@@ -191,7 +192,7 @@ table.sortable thead {
 	position: fixed;
 	z-index: -10;
 	margin:40% 0 0 40%;
-	background-color: rgba(180,180,150,0.2);
+	background-color:  lightgray;
 	padding: 1em;
 	border-radius: 0.5em;
 }

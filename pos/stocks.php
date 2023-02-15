@@ -52,19 +52,25 @@
 		</div>
 		";
 		echo"
-		<table class='sortable table table-responsive '>
-			<thead>
-				<tr>
-					<td>Stock No.</td>
-					<td>Product No.</td>
-					<td>In Stock Quantity</td>
-					<td>Sold Quantity</td>
-					<td>Total Quantity</td>
-					<td>Unit Price (Buy)</td>
-					<td>Import Date</td>	
-					<td>Action</td>				
+
+		<div class='container-fluid pt-4 px-4'>
+		<div class='bg-light text-center rounded p-4'>
+		   
+			<div class='table-responsive'>
+				<table class='table text-start align-middle table-bordered table-hover mb-0'>
+					<thead>
+						<tr class='text-dark'>
+						<tr>
+					<td scope='col'>Stock No.</td>
+					<td scope='col'>Product No.</td>
+					<td scope='col' >In Stock Quantity</td>
+					<td scope='col'>Sold Quantity</td>
+					<td scope='col'>Total Quantity</td>
+					<td scope='col'>Unit Price (Buy)</td>
+					<td scope='col'>Import Date</td>	
+					<td scope='col'>Action</td>				
 				</tr>
-			</thead>
+					</thead>
 			<tbody>
 		";
 		while($row=mysqli_fetch_array($result)){
@@ -91,13 +97,16 @@
 					<td>$totalQuantity</td>		
 					<td>$buyingPrice</td>
 					<td>$importDate</td>
-					<td><input type='button' value='DELETE FULL STOCK' onclick='deleteStock(\"$stockID\");' class='btn btn-danger btn-xs'></td>
+					<td><input type='button' value='DELETE FULL STOCK' onclick='deleteStock(\"$stockID\");' class='btn btn-danger'></td>
 				</tr>
 			";
 		}
 		echo"
 			</tbody>
 		</table>
+		</div>
+		</div>
+		</div>
 		";
 	}else{
 		echo "No stocks available currently.";
@@ -110,6 +119,7 @@
 
 <head>
   <title>Stocks</title>  
+  <link href="Template/dashmin-1.0.0/css/style.css" rel="stylesheet">
   <script type="text/javascript">
   //AJAX function to dynamically display types based on categories.
   	function showType(str) {
@@ -155,13 +165,13 @@
 	        </div>
 
 	        <div class="modal-body">
-	          <input class="form-control" id="stockId" name="stockId" placeholder="Enter Stock No." required type="text">	        
-	          <input class="form-control" id="productId" name="productId" placeholder="Enter Product No." required type="text">
-	          <input class="form-control" id="quantity" name="quantity" placeholder="Enter quantity." required type="text">
-	          <input class="form-control" id="productName" name="productName" placeholder="Enter Product Name." required type="text">
-	          <input class="form-control" id="productSize" name="productSize" placeholder="Enter Product Size."  type="text">
-	          <input class="form-control" id="buyingPrice" name="buyingPrice" placeholder="Enter Buying Price." required type="text">
-	          <input class="form-control" id="productPrice" name="productPrice" placeholder="Enter Selling Price." required type="text">
+	          <input class="form-control" id="stockId" name="stockId" placeholder="Enter Stock No." required type="text">	</br>        
+	          <input class="form-control" id="productId" name="productId" placeholder="Enter Product No." required type="text"></br>  
+	          <input class="form-control" id="quantity" name="quantity" placeholder="Enter quantity." required type="text"></br>  
+	          <input class="form-control" id="productName" name="productName" placeholder="Enter Product Name." required type="text"></br>  
+	          <input class="form-control" id="productSize" name="productSize" placeholder="Enter Product Size."  type="text"></br>  
+	          <input class="form-control" id="buyingPrice" name="buyingPrice" placeholder="Enter Buying Price." required type="text"></br>  
+	          <input class="form-control" id="productPrice" name="productPrice" placeholder="Enter Selling Price." required type="text"></br>  
 	          <!--Current date is automatically added.-->
 
 	           	<?php
@@ -196,3 +206,5 @@
 </body>
 
 </html>
+           
+            <!-- Recent Sales End -->

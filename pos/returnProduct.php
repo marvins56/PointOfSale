@@ -9,6 +9,7 @@
 
 <head>
   <title>Return Product</title> 
+  <link href="Template/dashmin-1.0.0/css/style.css" rel="stylesheet">
   <script type="text/javascript">
   //AJAX functions dynamic changes.
   	function showBillProducts() {
@@ -48,8 +49,11 @@
 </head>
 
 <body>
-	<div>		
-			<div id="returnDiv">			
+	<div>	
+		
+	<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+  <div >			
 				<div style="display:inline-block;width:59%;vertical-align: top">	
 					<input autocomplete="off" class="form-control" id="invoiceId" name="invoiceId" placeholder="Enter Bill Number and select a type on the left." required type="text"> 
 				</div>
@@ -67,10 +71,15 @@
 				<div id="productsDiv"></div>
 
 		    	<hr>	   
-		    	<div id="rightDiv">
-					<a href="javascript:history.back()" class="btn btn-warning btn-sm">Back</a>
+		    	<div id="">
+					<a href="javascript:history.back()" class="btn btn-primary btn-sm">Back</a>
 				</div>
-			</div>
+			</div>  
+
+
+  </div>
+</div>
+			
 	</div>
 
 </body>

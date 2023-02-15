@@ -94,7 +94,12 @@
 	function showCartNum(){
 		$_SESSION['cart_item']=0;
 		$cartItem=$_SESSION['cart_item'];
-		echo "<p id='itemNum'>Cart item(s): ".$cartItem."</p>";	
+		echo "
+		<button type='button' class='btn btn-primary' id='itemNum'>
+
+		Cart item(s): <span class='badge badge-light'>".$cartItem." </span>
+		</button>
+		";	
 	}	
 ?>
 
@@ -102,8 +107,14 @@
 <html>
 
 <head>
+
   <title>Sale</title> 
+
+
+    <!-- Template Stylesheet -->
+    <link href="Template/dashmin-1.0.0/css/style.css" rel="stylesheet">
   <script type="text/javascript">
+
   //AJAX functions dynamic changes.
   	function showProducts(str) {
 	  if (str=="") {
@@ -189,8 +200,12 @@
 </head>
 
 <body>
-	<div>		
-			<div id="salesDiv">
+	<div>	
+	<div class="jumbotron jumbotron-fluid">
+	<div class="card">
+  <h5 class="card-header">SALES DEPARTMENT</h5>
+  <div class="card-body">
+  <div id="">
 				
 				<input autocomplete="off" class="form-control" id="productName" name="productName" placeholder="Enter Product Name." required type="text" onclick="showSuggestions()" onkeyup="showProducts(this.value);"> 
 				<div id="livesearch"></div>
@@ -203,12 +218,19 @@
 		    	</div>
 		    	<div id="rightDiv">
 		    		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-						<a class="btn btn-sm btn-info" href="#cartForm" role="button" data-toggle="modal" id="newStock" onclick="showCart();">Checkout</a>
-						<input class="btn btn-sm btn-danger" type="button" value="Reset" onclick="location.reload();">
-						<a href="javascript:history.back()" class="btn btn-warning btn-sm">Back</a>
+
+						<a class="btn btn-primary" href="#cartForm" role="button" data-toggle="modal" id="newStock" onclick="showCart();">Checkout</a>
+						<input class="btn btn-danger" type="button" value="Reset" onclick="location.reload();">
+						<a href="javascript:history.back()" class="btn btn-warning ">Back</a>
 					</form>
 				</div>
 			</div>
+  </div>
+</div>
+
+  </div>
+</div>	
+			
 
 			<div>
 				<!--MODAL DIV-->
@@ -232,6 +254,7 @@
 				<!--MODAL DIV END-->
 	    	</div>
 	</div>
+
 
 </body>
 

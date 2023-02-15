@@ -26,13 +26,17 @@
 		</div>
 		";
 		echo "
-		<table class='table table-responsive sortable'>
-			<thead>
-				<tr>
-					<td>Bill No.</td>
-					<td>Date of Issue</td>
-					<td>Amount</td>
-					<td>Action</td>
+		<div class='container-fluid pt-4 px-4'>
+		<div class='bg-light text-center rounded p-4'>
+		   
+			<div class='table-responsive'>
+				<table class='table text-start align-middle table-bordered table-hover mb-0'>
+					<thead>
+					<tr class='text-dark'>
+					<td scope='col'>Bill No.</td>
+					<td scope='col'>Date of Issue</td>
+					<td scope='col'>Amount</td>
+					<td scope='col'>Action</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,13 +59,16 @@
 					<td>$invoiceId</td>
 					<td>$sellingDate</td>
 					<td>$amount</td>
-					<td><input type='button' onClick='OpenInNewTab($invoiceId);' class='btn btn-info btn-xs' value='SHOW BILL'></td>					
+					<td><input type='button' onClick='OpenInNewTab($invoiceId);' class='btn btn-primary' value='SHOW BILL'></td>					
 				<tr>
 			";
 		}
 		echo "
 			</tbody>
 		</table>
+		</div>
+		</div>
+		</div>
 		";
 	}else{
 		echo "No bills issued yet.";
@@ -78,7 +85,7 @@
 
 <body>	
 	<div id="tableButtons">
-		<a href="javascript:history.back()" class="btn btn-warning btn-sm">Back</a>
+		<a href="javascript:history.back()" class="btn btn-warning ">Back</a>
 	</div>
 </body>
 
