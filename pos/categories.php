@@ -60,9 +60,14 @@
 		</div>
 		";
 		echo"		
-		<table class='table table-responsive sortable'>
-			<thead>
-				<tr>
+		<div class='container-fluid pt-4 px-4'>
+		<div class='bg-light text-center rounded p-4'>
+		   
+			<div class='table-responsive sortable'>
+				<table class='table text-start align-middle table-bordered table-hover mb-0'>
+					<thead>
+					
+					<tr class='text-dark'>
 					<td>Category Name</td>
 					<td>Action</td>
 					<td>Action</td>
@@ -84,6 +89,9 @@
 		echo"
 			</tbody>
 		</table>
+		</div>
+		</div>
+		</div>
 		";
 	}
 
@@ -94,12 +102,13 @@
 
 <head>
   <title>Categories</title>  
+  <link href="Template/dashmin-1.0.0/css/style.css" rel="stylesheet">  
 </head>
 
 <body>
 	<div id="tableButtons">
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-			<a class="btn btn-sm btn-info" href="#categoryForm" role="button" data-toggle="modal" id="createNewCategoryButton">Create New Category</a>
+			<a class="btn btn-info" href="#categoryForm" role="button" data-toggle="modal" id="createNewCategoryButton">Create New Category</a>
 			<a href="javascript:history.back()" class="btn btn-warning btn-sm">Back</a>
 		</form>
 
