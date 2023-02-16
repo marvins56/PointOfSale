@@ -1,4 +1,20 @@
-<?php
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Customer History</title>  
+  <link href="Template/dashmin-1.0.0/css/style.css" rel="stylesheet"> 
+</head>
+
+<body>	
+<div class="card">
+  <div class="card-header">
+    CUSTOMER TRANSACTIONS
+  </div>
+  <div class="card-body">
+  <?php
 	ob_start();
 	require 'mask.php';	
 	require 'loginCheck.php';
@@ -36,9 +52,13 @@
 			</div>
 			";
 			echo "
-			<table class='table table-responsive sortable'>
-				<thead>
-					<tr>
+			<div class='container-fluid pt-4 px-4'>
+		<div class='bg-light text-center rounded p-4'>
+		   
+			<div class='table-responsive sortable'>
+				<table class='table text-start align-middle table-bordered table-hover mb-0'>
+					<thead>
+				<tr>
 						<td>Bill No.</td>
 						<td>Date of Issue</td>
 						<td>Amount</td>
@@ -67,7 +87,7 @@
 						<td>$invoiceId</td>
 						<td>$sellingDate</td>
 						<td>$amount</td>
-						<td><input type='button' onClick='OpenInNewTab($invoiceId);' class='btn btn-info btn-xs' value='SHOW BILL'></td>	
+						<td><input type='button' onClick='OpenInNewTab($invoiceId);' class='btn btn-info ' value='SHOW BILL'></td>	
 					<tr>
 				";
 			}
@@ -77,6 +97,9 @@
 			<div id='customerTotalText'>
 			Total expenditure: $sum
 			</div>
+			</div>
+			</div>
+			</div>
 			";
 		}else{
 			echo "No bills issued yet.";
@@ -85,18 +108,11 @@
 	}
 
 ?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Customer History</title>  
-</head>
-
-<body>	
-	<div id="tableButtons">
-		<a href="javascript:history.back()" class="btn btn-warning btn-sm">Back</a>
+</div>
+<div id="tableButtons">
+		<a href="javascript:history.back()" class="btn btn-warning ">Back</a>
 	</div>
+  </div>
 </body>
 
 </html>

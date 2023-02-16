@@ -16,8 +16,12 @@
 		</div>
 		";
 		echo"
-		<table class='table table-responsive sortable'>
-			<thead>
+		<div class='container-fluid pt-4 px-4'>
+		<div class='bg-light text-center rounded p-4'>
+		   
+			<div class='table-responsive sortable'>
+				<table class='table text-start align-middle table-bordered table-hover mb-0'>
+					<thead>
 				<tr>
 					<td>Customer Name</td>
 					<td>Contact Number</td>
@@ -31,19 +35,21 @@
 			$customerName=$row['customer_name'];
 			$customerContact=$row['customer_contact'];
 
-
 			
 			echo "
 				<tr>
 					<td>$customerName</td>
 					<td>$customerContact</td>
-					<td><a href='showCustomer.php?x=$customerId' type='button' class='btn btn-info btn-xs'>HISTORY</a></td>
+					<td><a href='showCustomer.php?x=$customerId' type='button' class='btn btn-info '>HISTORY</a></td>
 				</tr>
 			";
 		}
 		echo"
 			</tbody>
 		</table>
+		</div>
+		</div>
+		</div>
 		";
 	}else{
 		echo "No customer history available.";
@@ -56,11 +62,12 @@
 
 <head>
   <title>Customers</title>  
+  <link href="Template/dashmin-1.0.0/css/style.css" rel="stylesheet"> 
 </head>
 
 <body>	
 	<div id="tableButtons">
-		<a href="javascript:history.back()" class="btn btn-warning btn-sm">Back</a>
+		<a href="javascript:history.back()" class="btn btn-warning ">Back</a>
 	</div>
 </body>
 

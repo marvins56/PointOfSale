@@ -33,9 +33,14 @@
 		</div>
 		";
 		echo"		
-		<table class='table table-responsive sortable'>
-			<thead>
-				<tr>
+		<div class='container-fluid pt-4 px-4'>
+		<div class='bg-light text-center rounded p-4'>
+		   
+			<div class='table-responsive sortable'>
+				<table class='table text-start align-middle table-bordered table-hover mb-0'>
+					<thead>
+					
+					<tr class='text-dark'>
 					<td>Name</td>
 					<td>Phone No.</td>
 					<td>Address</td>
@@ -47,6 +52,9 @@
 				</tr>
 			</thead>
 			<tbody>
+			</div>
+			</div>
+			</div>
 		";
 		while($row=mysqli_fetch_array($result)){
 			$name=$row['employee_name'];
@@ -94,14 +102,15 @@
 <html>
 
 <head>
-  <title>User Accounts</title>  
+  <title>User Accounts</title> 
+  <link href="Template/dashmin-1.0.0/css/style.css" rel="stylesheet">  
 </head>
 
 <body>
 	<div id="tableButtons">
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-			<a class="btn btn-sm btn-info" href="#employeeForm" role="button" data-toggle="modal" id="createNewCategoryButton">Create New User Account</a>
-			<a href="javascript:history.back()" class="btn btn-warning btn-sm">Back</a>
+			<a class="btn  btn-info" href="#employeeForm" role="button" data-toggle="modal" id="createNewCategoryButton">Create New User Account</a>
+			<a href="javascript:history.back()" class="btn btn-warning ">Back</a>
 		</form>
 
 	</div>	
@@ -117,12 +126,13 @@
 	        </div>
 
 	        <div class="modal-body">
-	          <input class="form-control" id="employeeName" name="employeeName" placeholder="Enter employee name. This will be the login username." required type="text" value="" autocomplete="off">
-	          <input class="form-control" id="employeePhone" name="employeePhone" placeholder="Enter phone number." required type="text" value="" autocomplete="off">
-	          <input class="form-control" id="employeeAddress" name="employeeAddress" placeholder="Enter address." required type="text" value="" autocomplete="off">
-	          <input class="form-control" id="employeeNationalId" name="employeeNationalId" placeholder="Enter national identification number." required type="text" value="" autocomplete="off">
-	          <input class="form-control" id="employeePassword" name="employeePassword" placeholder="Enter Desired password. At least 8 digits." required type="password" value="" autocomplete="off">	 
+	          <input class="form-control" id="employeeName" name="employeeName" placeholder="Enter employee name. This will be the login username." required type="text" value="" autocomplete="off"></br>
+	          <input class="form-control" id="employeePhone" name="employeePhone" placeholder="Enter phone number." required type="text" value="" autocomplete="off"></br>
+	          <input class="form-control" id="employeeAddress" name="employeeAddress" placeholder="Enter address." required type="text" value="" autocomplete="off"></br>
+	          <input class="form-control" id="employeeNationalId" name="employeeNationalId" placeholder="Enter national identification number." required type="text" value="" autocomplete="off"></br>
+	          <input class="form-control" id="employeePassword" name="employeePassword" placeholder="Enter Desired password. At least 8 digits." required type="password" value="" autocomplete="off"></br>	 
 	          <input class="form-control" id="employeeRePassword" name="employeeRePassword" placeholder="Enter password again." required type="password" value="" autocomplete="off">
+			  </br>
 			<?php
 				if(isset($_SESSION['id'])){
 			        require 'myConnection.php';

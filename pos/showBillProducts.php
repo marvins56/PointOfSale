@@ -9,18 +9,22 @@
 	}
 	if(mysqli_num_rows($result)){
 		echo"
-		<table class='table table-responsive'>
-			<thead>
+		<div class='container-fluid pt-4 px-4'>
+		<div class='bg-light text-center rounded p-4'>
+		   
+			<div class='table-responsive sortable'>
+				<table class='table text-start align-middle table-bordered table-hover mb-0'>
+					<thead>
 				<tr>
-					<td>Product No.</td>
-					<td>Product Name</td>
-					<td>Date</td>
-					<td>Type</td>
-					<td>Category</td>
-					<td>Size</td>
-					<td>Price</td>
-					<td>Return Quantity</td>
-					<td>Action</td>
+					<td scope='col'>Product No.</td>
+					<td scope='col'>Product Name</td>
+					<td scope='col'>Date</td>
+					<td scope='col'>Type</td>
+					<td scope='col'>Category</td>
+					<td scope='col'>Size</td>
+					<td scope='col'>Price</td>
+					<td scope='col'>Return Quantity</td>
+					<td scope='col'>Action</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -86,6 +90,9 @@
 		echo"
 			</tbody>
 		</table>
+		</div>
+		</div>
+		</div>
 		";
 	}else{
 		echo "No products found by this Bill No.";

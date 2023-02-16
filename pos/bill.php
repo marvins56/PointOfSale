@@ -81,6 +81,7 @@
 
 <head>
   <title>Bills</title>  
+  <link href="Template/dashmin-1.0.0/css/style.css" rel="stylesheet"> 
 </head>
 
 <body>	

@@ -18,6 +18,7 @@
 
 <head>
   <title>Reports</title>  
+  <link href="Template/dashmin-1.0.0/css/style.css" rel="stylesheet"> 
   <script src="apiFiles/jquery-ui.js"></script>
   <link rel="stylesheet" href="apiFiles/jquery-ui.css">
 </head>

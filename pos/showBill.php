@@ -29,40 +29,43 @@
 		    die('Invalid query: ' . mysqli_error($con));
 		}
 		$row=mysqli_fetch_array($result);
+		
 
-		$sellingDate=$row['selling_date'];
-		$customerName=$row['customer_name'];
-		$customerContact=$row['customer_contact'];
-		$employeeNo=$row['employee_no'];
-		$employeeName=$row['employee_name'];
-		$employeeContact=$row['employee_phone'];
-		$discount=$row['discount'];
-		$vat=$row['vat'];
-		$cashGiven=$row['cash_given'];
-		$cashBack=$row['cash_back'];
-		echo "
-		<br>
-		<div id='leftDiv'>Bill No: $invoiceId</div>
-		<div id='rightDiv'>Date: $sellingDate</div>
-		<hr>
-		<div id='leftDiv70'>
-		<b>Customer Information</b><br>
-		Customer name: $customerName<br>
-		Customer contact: $customerContact<br>
-		</div>
+	$sellingDate=$row['selling_date'];
+	$customerName=$row['customer_name'];
+	$customerContact=$row['customer_contact'];
+	$employeeNo=$row['employee_no'];
+	$employeeName=$row['employee_name'];
+	$employeeContact=$row['employee_phone'];
+	$discount=$row['discount'];
+	$vat=$row['vat'];
+	$cashGiven=$row['cash_given'];
+	$cashBack=$row['cash_back'];
+	echo "
+	<br>
+	<div id='leftDiv'>Bill No: $invoiceId</div>
+	<div id='rightDiv'>Date: $sellingDate</div>
+	<hr>
+	<div id='leftDiv70'>
+	<b>Customer Information</b><br>
+	Customer name: $customerName<br>
+	Customer contact: $customerContact<br>
+	</div>
 
-		<div id='rightDiv30'>
-		<b>Salesman Information</b><br>
-		Employee No: $employeeNo<br>
-		Employee name: $employeeName<br>
-		Employee contact: $employeeContact<br>
-		</div>
+	<div id='rightDiv30'>
+	<b>Salesman Information</b><br>
+	Employee No: $employeeNo<br>
+	Employee name: $employeeName<br>
+	Employee contact: $employeeContact<br>
+	</div>
+
+	
+	<div id='billTable'>
+	<h4><p align='center'><b>Product details</b></p></h4>
+	
+	";
 
 		
-		<div id='billTable'>
-		<h4><p align='center'><b>Product details</b></p></h4>
-		
-		";
 
 		$sql="SELECT * FROM sales JOIN products ON sales.product_id=products.product_id WHERE invoice_id='$invoiceId'";
 		$result=mysqli_query($con,$sql);

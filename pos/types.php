@@ -110,8 +110,8 @@
 				<tr>
 					<td>$typeName</td>
 					<td>$categoryName</td>
-					<td><a class='btn btn-xs btn-info' href='#typeChangeForm' role='button' data-toggle='modal' onClick='setTypeId($id);'>MODIFY</a></td>
-					<td><input type='button' value='DELETE' onclick='deleteType($id);' class='btn btn-danger btn-xs'></td>
+					<td><a class='btn btn-info' href='#typeChangeForm' role='button' data-toggle='modal' onClick='setTypeId($id);'>MODIFY</a></td>
+					<td><input type='button' value='DELETE' onclick='deleteType($id);' class='btn btn-danger '></td>
 				</tr>
 			";
 		}
@@ -136,7 +136,7 @@
 <body>
 	<div id="tableButtons">
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-			<a class="btn btn-sm btn-info" href="#typeForm" role="button" data-toggle="modal" id="createNewTypeButton">Add New Product Type</a>
+			<a class="btn  btn-info" href="#typeForm" role="button" data-toggle="modal" id="createNewTypeButton">Add New Product Type</a>
 			<a href="javascript:history.back()" class="btn btn-warning btn-sm">Back</a>
 		</form>
 	</div>
@@ -197,9 +197,9 @@
 						echo "<option>$name</option>";
 					}
 					echo "</select>";
-	          	?>
+	          	?></br>
 	          <input id="typeChangeId" name="typeChangeId" required type="text" style="display:none">
-	    
+			  </br>
 	        </div>
 	        <div class="modal-footer">
 	          <a href="#" data-dismiss="modal" class="btn btn-default">Close</a>      

@@ -236,7 +236,7 @@
 		if (!$result) {
 		    die('Invalid query: ' . mysqli_error($con));
 		}
-		if(mysql_num_rows($result)){
+		if(mysqli_num_rows($result)){
 			$row=mysqli_fetch_array($result);
 			$returnAmount=$row['amount'];
 			$returnBillId=$row['invoice_id'];
@@ -250,7 +250,7 @@
 		if (!$result) {
 			die('Invalid query: ' . mysqli_error($con));
 		}
-		if(!mysql_num_rows($result)){
+		if(!mysqli_num_rows($result)){
 			$sql="INSERT INTO customers (customer_name,customer_contact) VALUES ('$customerName','$customerContact')";
 			$result=mysqli_query($con,$sql);
 			if (!$result) {
@@ -364,9 +364,9 @@
 <body id="tempBillBody">
 	<div>
 		<?php
-			echo "<button class='btn btn-info btn-sm' onclick='finalizeCart(\"$customerName\",\"$customerContact\",$discount,$vat,$cashGiven,$cashBack,$returnId);' id='printButton'>Confirm Bill</button>";
+			echo "<button class='btn btn-info ' onclick='finalizeCart(\"$customerName\",\"$customerContact\",$discount,$vat,$cashGiven,$cashBack,$returnId);' id='printButton'>Confirm Bill</button>";
 		?>
-		<a href="javascript:history.back()" class="btn btn-warning btn-sm">Back</a>
+		<a href="javascript:history.back()" class="btn btn-warning ">Back</a>
 
 	</div>	
 </body>
