@@ -28,9 +28,8 @@
 		if (!$result) {
 		    die('Invalid query: ' . mysqli_error($con));
 		}
-		$row=mysqli_fetch_array($result);
-		
 
+	$row=mysqli_fetch_array($result);
 	$sellingDate=$row['selling_date'];
 	$customerName=$row['customer_name'];
 	$customerContact=$row['customer_contact'];
@@ -65,8 +64,6 @@
 	
 	";
 
-		
-
 		$sql="SELECT * FROM sales JOIN products ON sales.product_id=products.product_id WHERE invoice_id='$invoiceId'";
 		$result=mysqli_query($con,$sql);
 		if (!$result) {
@@ -86,6 +83,7 @@
 			</thead>
 			<tbody>
 		";
+
 		$sum=0;
 		while($row=mysqli_fetch_array($result)){
 			$productId=$row['product_id'];
@@ -100,13 +98,13 @@
 			if($productSize===""){
 				$productSize="N/A";
 			}
-			$sql2="SELECT type_name FROM types WHERE type_id='$productType'";
-			$result2=mysqli_query($con,$sql2);
-			if (!$result2) {
+			$sql3="SELECT type_name FROM types WHERE type_id='$productType'";
+			$result3=mysqli_query($con,$sql3);
+			if (!$result3) {
 				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysqli_fetch_array($result2);
-			$productTypeName=$row2['type_name'];
+			$row3=mysqli_fetch_array($result3);
+			$productTypeName=$row3['type_name'];
 			if($productTypeName===null)
 				$productTypeName="N/A";
 

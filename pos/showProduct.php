@@ -52,9 +52,10 @@
 					die('Invalid query: ' . mysqli_error($con));
 				}
 				$row2=mysqli_fetch_array($result2);
-				$productTypeName=$row2['type_name'];
-				if($productTypeName===null)
-					$productTypeName="N/A";
+				if (!empty($row2))
+					$productTypeName=$row2['type_name'];
+					if(empty($productTypeName))
+						$productTypeName="N/A";
 
 				$sql2="SELECT category_name FROM categories WHERE category_id='$productCategory'";
 				$result2=mysqli_query($con,$sql2);

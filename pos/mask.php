@@ -10,9 +10,9 @@
   function showTitle(){
     require 'myConnection.php';
     $sql="SELECT company_name FROM company";
-    $result= mysqli_query($con,$sql);
+    $result=mysqli_query($con,$sql);
     if (!$result) {
-        die('Invalid query: ');
+        die('Invalid query: ' . mysqli_error($con));
     }
     $row=mysqli_fetch_array($result);
     $companyName=$row['company_name'];
@@ -21,7 +21,7 @@
   }
   function showLogOutButton(){
     if(isset($_SESSION['id'])){
-      echo '<input type="button" class="btn btn-danger" role="button" id="signOutButton" value="Log Out" onClick="logOut();" /></p>';
+      echo '<input type="button" class="btn btn-sm btn-danger" role="button" id="signOutButton" value="Log Out" onClick="logOut();" /></p>';
     }
   }
 ?>
@@ -42,6 +42,9 @@
   <script type="text/javascript" src="scripts/myscripts.js"></script>
 
 </head>
+
+
+
 <body>
   <div class="hiddenDiv">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -50,7 +53,7 @@
   </div>
 
   <div id="header">
-    <a href="panel.php" id="titleText" style="margin-top:5; margin-left:10;"><?php showTitle(); ?></a>  
+    <a href="panel.php" id="titleText"><?php showTitle(); ?></a>  
     <div id="logOutDiv"><?php showLogOutButton(); ?></div>
 
   <div id="ribonBar">
@@ -165,6 +168,7 @@
       <img src="images/categories.png">
       <div>Categories</div>
     </a>
+
     <a href="types.php">
       <img src="images/types.png">
       <div>Types</div>
@@ -185,10 +189,9 @@
   </div>
 
   </div>
- 
+  <div id="footerDiv">
+    Developped by <span id="footerSpan">HAUNTED</span>
+  </div>
 </body>
 
 </html>
-
-
-

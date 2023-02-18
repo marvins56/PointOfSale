@@ -68,20 +68,22 @@
 			if (!$result2) {
 				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysqli_fetch_array($result2);
-			$productTypeName=$row2['type_name'];
-			if($productTypeName===null)
-				$productTypeName="N/A";
+			$row3=mysqli_fetch_array($result2);
+			if(!empty($row3))
+				$productTypeName=$row3['type_name'];
+				if(empty($productTypeName))
+					$productTypeName="N/A";
 
-			$sql2="SELECT category_name FROM categories WHERE category_id='$productCategory'";
-			$result2=mysqli_query($con,$sql2);
-			if (!$result2) {
+			$sql4="SELECT category_name FROM categories WHERE category_id='$productCategory'";
+			$result4=mysqli_query($con,$sql4);
+			if (!$result4) {
 				die('Invalid query: ' . mysqli_error($con));
 			}
-			$row2=mysqli_fetch_array($result2);
-			$productCategoryName=$row2['category_name'];
-			if($productCategoryName===null)
-				$productCategoryName="N/A";
+			$row4=mysqli_fetch_array($result4);
+			if(!empty($row4))
+				$productCategoryName=$row4['category_name'];
+				if(empty($productCategoryName))
+					$productCategoryName="N/A";
 			
 			echo "
 				<tr>
