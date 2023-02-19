@@ -1,5 +1,6 @@
 <?php
 	session_start();
+
 	require 'myConnection.php';	
 	$quantity = $_GET['x'];
 	$id=$_GET['y'];
